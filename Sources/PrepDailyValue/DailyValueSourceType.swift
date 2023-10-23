@@ -9,6 +9,7 @@ public enum DailyValueSource: Int {
     case mayoClinic
     case healthline
     case medlinePlus
+    case eatRight
     
 //    var name: String {
 //        switch self {

@@ -139,9 +139,8 @@ public struct DailyValue {
 //MARK: - Daily Values for Test Cases
 
 public let vitaminC_nih = DailyValue(
-    micro: .vitaminC_ascorbicAcid,
-    unit: .mg,
-    type: .preset,
+    micro: .vitaminC_ascorbicAcid, unit: .mg, type: .preset,
+    source: .nih,
     url: "https://ods.od.nih.gov/factsheets/VitaminC-Consumer/",
     goalType: .fixed,
     goals: [
@@ -165,6 +164,7 @@ public let vitaminC_nih = DailyValue(
 
 public let transFat_who = DailyValue(
     micro: .transFat, unit: .g, type: .preset,
+    source: .who,
     url: "https://www.who.int/news-room/questions-and-answers/item/nutrition-trans-fat",
     goalType: .percentageOfEnergy,
     goals: [
@@ -173,9 +173,8 @@ public let transFat_who = DailyValue(
 )
 
 public let fiber_mayoClinic = DailyValue(
-    micro: .dietaryFiber,
-    unit: .g,
-    type: .preset,
+    micro: .dietaryFiber, unit: .g, type: .preset,
+    source: .mayoClinic,
     url: "https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/in-depth/high-fiber-foods/art-20050948",
     goalType: .fixed,
     goals: [
@@ -185,9 +184,8 @@ public let fiber_mayoClinic = DailyValue(
 )
 
 public let fiber_eatRight = DailyValue(
-    micro: .dietaryFiber,
-    unit: .g,
-    type: .preset,
+    micro: .dietaryFiber, unit: .g, type: .preset,
+    source: .eatRight,
     url: "https://www.eatright.org/health/essential-nutrients/carbohydrates/fiber",
     goalType: .quantityPerEnergy(1000, .kcal),
     goals: [
