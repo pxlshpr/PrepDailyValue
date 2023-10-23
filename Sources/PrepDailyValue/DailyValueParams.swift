@@ -1,14 +1,14 @@
 import PrepShared
 
 public struct DailyValueParams {
-    public var age: Int? = nil
+    public var age: Double? = nil
     public var gender: BiometricSex? = nil
     public var isPregnant: Bool? = nil
     public var isLactating: Bool? = nil
     public var isSmoker: Bool? = nil
     
     public init(
-        age: Int? = nil,
+        age: Double? = nil,
         gender: BiometricSex? = nil,
         isPregnant: Bool? = nil,
         isLactating: Bool? = nil,

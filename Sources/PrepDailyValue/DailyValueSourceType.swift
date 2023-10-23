@@ -1,6 +1,6 @@
 import PrepShared
 
-public enum DailyValuePresetSource: Int {
+public enum DailyValueSource: Int {
     case who
     case nhs
     case nih

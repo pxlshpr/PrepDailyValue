@@ -1,11 +1,11 @@
 import PrepShared
 
-public enum DailyValueSource {
+public enum DailyValueType {
     case preset
     case custom
 }
 
-public extension DailyValueSource {
+public extension DailyValueType {
     var name: String {
         switch self {
         case .preset: "Preset"
@@ -14,10 +14,10 @@ public extension DailyValueSource {
     }
 }
 
-extension DailyValueSource: Pickable {
+extension DailyValueType: Pickable {
     public var pickedTitle: String { name }
     public var menuTitle: String { name }
-    public static var `default`: DailyValueSource {
+    public static var `default`: DailyValueType {
         .preset
     }
 }
