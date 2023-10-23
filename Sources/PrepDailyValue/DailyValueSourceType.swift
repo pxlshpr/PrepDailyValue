@@ -10,15 +10,37 @@ public enum DailyValueSource: Int, CaseIterable, Codable {
     case healthline
     case medlinePlus
     case eatRight
+}
+
+public extension DailyValueSource {
     
-//    var name: String {
-//        switch self {
-//        case .who:      "World Health Organization"
-//        case .nhs:      "National Health Service"
-//        case .nih:      "National Institutes of Health"
-//        case .webmd:    "WebMD"
-//        }
-//    }
+    var abbreviation: String {
+        switch self {
+        case .who:              "WHO"
+        case .nhs:              "NHS"
+        case .nih:              "NIH"
+        case .webMD:            "WebMD"
+        case .harvardTHChan:    "Harvard T.H. Chan"
+        case .mayoClinic:       "Mayo Clinic"
+        case .healthline:       "HealthLine"
+        case .medlinePlus:      "MedlinePlus"
+        case .eatRight:         "EatRight"
+        }
+    }
+
+    var name: String {
+        switch self {
+        case .who:              "World Health Organization"
+        case .nhs:              "National Health Service"
+        case .nih:              "National Institutes of Health"
+        case .webMD:            "WebMD"
+        case .harvardTHChan:    "Harvard T.H. Chan"
+        case .mayoClinic:       "Mayo Clinic"
+        case .healthline:       "HealthLine"
+        case .medlinePlus:      "MedlinePlus"
+        case .eatRight:         "EatRight"
+        }
+    }
 //
 //    var governingBody: String {
 //        switch self {
