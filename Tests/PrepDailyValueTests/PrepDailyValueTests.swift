@@ -6,30 +6,16 @@ final class PrepDailyValueTests: XCTestCase {
     func testExample() throws {
         
         for testCase in testCases {
-            let bound = testCase.dailyValue.bound(params: testCase.params, energyInKcal: testCase.energyInKcal)
+            let bound = testCase.dailyValue.bound(
+                params: testCase.params,
+                energyInKcal: testCase.energyInKcal
+            )
             XCTAssertEqual(bound, testCase.expectedBound)
         }
     }
 }
 
-struct TestCase {
-    let dailyValue: DailyValue
-    let params: DailyValueParams
-    let energyInKcal: Double?
-    let expectedBound: GoalBound?
-    
-    init(
-        dailyValue: DailyValue,
-        params: DailyValueParams = .init(),
-        energyInKcal: Double? = nil,
-        expectedBound: GoalBound?
-    ) {
-        self.dailyValue = dailyValue
-        self.params = params
-        self.energyInKcal = energyInKcal
-        self.expectedBound = expectedBound
-    }
-}
+//MARK: - Test Cases
 
 let testCases: [TestCase] = [
     .init(
@@ -46,7 +32,24 @@ let testCases: [TestCase] = [
         dailyValue: fiber_mayoClinic,
         expectedBound: nil /// no gender so we're unable to infer this
     ),
+    .init(
+        dailyValue: vitaminC_nih,
+        params: .init(age: 36, gender: .male, isSmoker: false),
+        expectedBound: b(90, 2000)
+    ),
+    .init(
+        dailyValue: vitaminC_nih,
+        params: .init(age: 36, gender: .male),
+        expectedBound: nil /// smoking status is required
+    ),
+    .init(
+        dailyValue: vitaminC_nih,
+        params: .init(age: 17, gender: .female, isPregnant: false, isLactating: true),
+        expectedBound: b(115, 1800)
+    ),
 ]
+
+//MARK: - Daily Values for Test Cases
 
 let fiber_mayoClinic = DailyValue(
     micro: .dietaryFiber,
@@ -107,7 +110,7 @@ let vitaminC_nih = DailyValue(
     ]
 )
 
-//TODO: Add more cases like fiber for per energy, fixed, etc.
+//MARK: - Helpers
 
 func g(
     _ bound: GoalBound,
@@ -137,4 +140,23 @@ func l(_ lower: Double) -> GoalBound {
 
 func u(_ upper: Double) -> GoalBound {
     GoalBound(upper: upper)
+}
+
+struct TestCase {
+    let dailyValue: DailyValue
+    let params: DailyValueParams
+    let energyInKcal: Double?
+    let expectedBound: GoalBound?
+    
+    init(
+        dailyValue: DailyValue,
+        params: DailyValueParams = .init(),
+        energyInKcal: Double? = nil,
+        expectedBound: GoalBound?
+    ) {
+        self.dailyValue = dailyValue
+        self.params = params
+        self.energyInKcal = energyInKcal
+        self.expectedBound = expectedBound
+    }
 }
