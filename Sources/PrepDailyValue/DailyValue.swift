@@ -1,6 +1,6 @@
 import PrepShared
 
-public struct DailyValue {
+public struct DailyValue: Codable, Hashable, Equatable {
     public let micro: Micro
     public let unit: NutrientUnit
     public let type: DailyValueType

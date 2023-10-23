@@ -1,6 +1,6 @@
 import PrepShared
 
-public enum DailyValueSource: Int {
+public enum DailyValueSource: Int, CaseIterable, Codable {
     case who
     case nhs
     case nih

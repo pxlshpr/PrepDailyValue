@@ -1,6 +1,6 @@
 import PrepShared
 
-public enum DailyValueType {
+public enum DailyValueType: Int, CaseIterable, Codable {
     case preset
     case custom
 }

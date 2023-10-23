@@ -1,6 +1,6 @@
 import PrepShared
 
-public enum DailyValueGoalType {
+public enum DailyValueGoalType: Hashable, Equatable, Codable {
     case fixed
     case quantityPerEnergy(Double, EnergyUnit)
     case percentageOfEnergy

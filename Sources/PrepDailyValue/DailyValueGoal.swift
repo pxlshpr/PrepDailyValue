@@ -1,6 +1,6 @@
 import PrepShared
 
-public struct DailyValueGoal {
+public struct DailyValueGoal: Hashable, Codable, Equatable {
     public var bound: GoalBound
     public var ageRange: GoalBound? = nil
     public var gender: BiometricSex? = nil
