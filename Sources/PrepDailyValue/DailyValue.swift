@@ -1,4 +1,5 @@
 import PrepShared
+import PrepBiometrics
 
 public struct DailyValue: Codable, Hashable, Equatable {
     public let micro: Micro

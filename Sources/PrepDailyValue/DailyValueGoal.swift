@@ -1,4 +1,5 @@
 import PrepShared
+import PrepBiometrics
 
 public struct DailyValueGoal: Hashable, Codable, Equatable {
     public var bound: GoalBound

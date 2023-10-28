@@ -19,12 +19,21 @@
       }
     },
     {
+      "identity" : "prepbiometrics",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pxlshpr/PrepBiometrics",
+      "state" : {
+        "revision" : "130b0a727024d5cd14bcc3dcae546e06af4a4af7",
+        "version" : "0.0.11"
+      }
+    },
+    {
       "identity" : "prepshared",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pxlshpr/PrepShared",
       "state" : {
-        "revision" : "90b152e535995cb7f81ff506a4c15e5b2da7680e",
-        "version" : "0.0.125"
+        "revision" : "627582f2449536c780f10a8c1c068d9e4b948413",
+        "version" : "0.0.139"
       }
     },
     {

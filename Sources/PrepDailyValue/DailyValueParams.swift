@@ -1,4 +1,5 @@
 import PrepShared
+import PrepBiometrics
 
 public struct DailyValueParams {
     public var age: Double? = nil
