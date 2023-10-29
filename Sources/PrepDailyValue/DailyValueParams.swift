@@ -1,5 +1,4 @@
 import PrepShared
-import PrepSettings
 
 public struct DailyValueParams {
     public var age: Double? = nil

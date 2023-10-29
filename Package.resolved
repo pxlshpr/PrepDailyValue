@@ -19,21 +19,12 @@
       }
     },
     {
-      "identity" : "prepsettings",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pxlshpr/PrepSettings",
-      "state" : {
-        "revision" : "2cb023071b33bb27ee65fcbc3d4b82b82e1fb2c8",
-        "version" : "0.0.1"
-      }
-    },
-    {
       "identity" : "prepshared",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pxlshpr/PrepShared",
       "state" : {
-        "revision" : "d1d558fa3b04148a7b7f39057451c2b988293495",
-        "version" : "0.0.141"
+        "revision" : "1656bd311ee3740fe87d35170887cb4048f9b9c5",
+        "version" : "0.0.142"
       }
     },
     {

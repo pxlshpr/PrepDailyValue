@@ -1,5 +1,4 @@
 import PrepShared
-import PrepSettings
 
 public struct DailyValue: Codable, Hashable, Equatable {
     public let micro: Micro

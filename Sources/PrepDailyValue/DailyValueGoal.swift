@@ -1,5 +1,4 @@
 import PrepShared
-import PrepSettings
 
 public struct DailyValueGoal: Hashable, Codable, Equatable {
     public var bound: GoalBound
