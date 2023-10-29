@@ -19,12 +19,12 @@
       }
     },
     {
-      "identity" : "prepbiometrics",
+      "identity" : "prepsettings",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pxlshpr/PrepBiometrics",
+      "location" : "https://github.com/pxlshpr/PrepSettings",
       "state" : {
-        "revision" : "130b0a727024d5cd14bcc3dcae546e06af4a4af7",
-        "version" : "0.0.11"
+        "revision" : "2cb023071b33bb27ee65fcbc3d4b82b82e1fb2c8",
+        "version" : "0.0.1"
       }
     },
     {
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pxlshpr/PrepShared",
       "state" : {
-        "revision" : "627582f2449536c780f10a8c1c068d9e4b948413",
-        "version" : "0.0.139"
+        "revision" : "d1d558fa3b04148a7b7f39057451c2b988293495",
+        "version" : "0.0.141"
       }
     },
     {
