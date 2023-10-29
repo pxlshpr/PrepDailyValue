@@ -1,6 +1,6 @@
 import PrepShared
 
-public struct DailyValueParams {
+public struct PresetDailyValueParams {
     public var age: Double? = nil
     public var gender: BiometricSex? = nil
     public var isPregnant: Bool? = nil

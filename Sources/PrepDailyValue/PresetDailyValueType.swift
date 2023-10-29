@@ -1,12 +1,12 @@
 import PrepShared
 
-public enum DailyValueGoalType: Hashable, Equatable, Codable {
+public enum PresetDailyValueType: Hashable, Equatable, Codable {
     case fixed
     case quantityPerEnergy(Double, EnergyUnit)
     case percentageOfEnergy
 }
 
-public extension DailyValueGoalType {
+public extension PresetDailyValueType {
     var usesEnergy: Bool {
         switch self {
         case .quantityPerEnergy, .percentageOfEnergy:   true

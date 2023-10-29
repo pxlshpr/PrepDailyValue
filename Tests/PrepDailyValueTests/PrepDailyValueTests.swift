@@ -50,14 +50,14 @@ let testCases: [TestCase] = [
 ]
 
 struct TestCase {
-    let dailyValue: DailyValue
-    let params: DailyValueParams
+    let dailyValue: PresetDailyValueGroup
+    let params: PresetDailyValueParams
     let energyInKcal: Double?
     let expectedBound: GoalBound?
     
     init(
-        dailyValue: DailyValue,
-        params: DailyValueParams = .init(),
+        dailyValue: PresetDailyValueGroup,
+        params: PresetDailyValueParams = .init(),
         energyInKcal: Double? = nil,
         expectedBound: GoalBound?
     ) {

@@ -1,22 +1,22 @@
 import PrepShared
 
-public struct DailyValue: Codable, Hashable, Equatable {
+public struct PresetDailyValueGroup: Codable, Hashable, Equatable {
     public let micro: Micro
     public let unit: NutrientUnit
     public let type: DailyValueType
-    public let goalType: DailyValueGoalType
-    public let source: DailyValueSource?
+    public let goalType: PresetDailyValueType
+    public let source: PresetDailyValueSource?
     public let url: String?
-    public let goals: [DailyValueGoal]
+    public let goals: [PresetDailyValue]
     
     public init(
         micro: Micro,
         unit: NutrientUnit,
         type: DailyValueType,
-        source: DailyValueSource? = nil,
+        source: PresetDailyValueSource? = nil,
         url: String? = nil,
-        goalType: DailyValueGoalType,
-        goals: [DailyValueGoal]
+        goalType: PresetDailyValueType,
+        goals: [PresetDailyValue]
     ) {
         self.micro = micro
         self.unit = unit
@@ -34,7 +34,7 @@ public struct DailyValue: Codable, Hashable, Equatable {
     /// [x] One with grams/energy like fiber
     /// [x] One with percentage of energy like transFat
     /// [x] Add a field in `DailyValue` that lets us link to the `DailyValueSourcePreset` enum (hardcoded in app, not recommended), or links to another entity we will have in addition to this (preferable, as its updatabale remotely)
-    /// [x] Move the `DailValueGoalType` field from `DailyValueGoal` to `DailyValue` itself to avoid repetition
+    /// [x] Move the `DailValueGoalType` field from `PresetDailyValue` to `DailyValue` itself to avoid repetition
     /// [ ] Implement the bound function below and test calculating it
     /// [ ] Create the `DailyValueSource` struct with fields we woudl want to use
     /// [ ] Create test sources for NIH etc (all the ones used in examples) and actually link them
@@ -45,7 +45,7 @@ public struct DailyValue: Codable, Hashable, Equatable {
     /// [ ] Include the DailyValueParams fields in Biometrics, and have a quick accessor for it, returning the values stored in it and also a dynamic age if possible
 
     public func bound(
-        params: DailyValueParams = .init(),
+        params: PresetDailyValueParams = .init(),
         energyInKcal: Double? = nil
     ) -> GoalBound? {
         
@@ -138,7 +138,7 @@ public struct DailyValue: Codable, Hashable, Equatable {
 
 //MARK: - Daily Values for Test Cases
 
-public let vitaminC_nih = DailyValue(
+public let vitaminC_nih = PresetDailyValueGroup(
     micro: .vitaminC_ascorbicAcid, unit: .mg, type: .preset,
     source: .nih,
     url: "https://ods.od.nih.gov/factsheets/VitaminC-Consumer/",
@@ -162,7 +162,7 @@ public let vitaminC_nih = DailyValue(
     ]
 )
 
-public let transFat_who = DailyValue(
+public let transFat_who = PresetDailyValueGroup(
     micro: .transFat, unit: .g, type: .preset,
     source: .who,
     url: "https://www.who.int/news-room/questions-and-answers/item/nutrition-trans-fat",
@@ -172,7 +172,7 @@ public let transFat_who = DailyValue(
     ]
 )
 
-public let fiber_mayoClinic = DailyValue(
+public let fiber_mayoClinic = PresetDailyValueGroup(
     micro: .dietaryFiber, unit: .g, type: .preset,
     source: .mayoClinic,
     url: "https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/in-depth/high-fiber-foods/art-20050948",
@@ -183,7 +183,7 @@ public let fiber_mayoClinic = DailyValue(
     ]
 )
 
-public let fiber_eatRight = DailyValue(
+public let fiber_eatRight = PresetDailyValueGroup(
     micro: .dietaryFiber, unit: .g, type: .preset,
     source: .eatRight,
     url: "https://www.eatright.org/health/essential-nutrients/carbohydrates/fiber",
@@ -202,8 +202,8 @@ public func g(
     pregnant: Bool? = nil,
     lactating: Bool? = nil,
     smoker: Bool? = nil
-) -> DailyValueGoal {
-    DailyValueGoal(
+) -> PresetDailyValue {
+    PresetDailyValue(
         bound: bound,
         ageRange: ageRange,
         gender: gender,

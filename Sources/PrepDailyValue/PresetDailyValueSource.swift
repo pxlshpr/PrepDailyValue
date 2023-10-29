@@ -1,6 +1,6 @@
 import PrepShared
 
-public enum DailyValueSource: Int, CaseIterable, Codable {
+public enum PresetDailyValueSource: Int, CaseIterable, Codable {
     case who
     case nhs
     case nih
@@ -12,7 +12,7 @@ public enum DailyValueSource: Int, CaseIterable, Codable {
     case eatRight
 }
 
-public extension DailyValueSource {
+public extension PresetDailyValueSource {
     
     var abbreviation: String {
         switch self {
