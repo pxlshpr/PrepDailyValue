@@ -15,7 +15,8 @@ let package = Package(
             targets: ["PrepDailyValue"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/pxlshpr/PrepShared", from: "0.0.142"),
+        .package(url: "https://github.com/pxlshpr/PrepShared", from: "0.0.171"),
+        .package(url: "https://github.com/pxlshpr/PrepSettings", from: "0.0.15"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -24,6 +25,7 @@ let package = Package(
             name: "PrepDailyValue",
             dependencies: [
                 .product(name: "PrepShared", package: "PrepShared"),
+                .product(name: "PrepSettings", package: "PrepSettings"),
             ]
         ),
         .testTarget(
