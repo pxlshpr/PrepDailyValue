@@ -2,19 +2,14 @@ import SwiftUI
 import PrepShared
 import PrepSettings
 
-/// [ ] UIse RDI from backend instead of micro.rdis
-/// [ ] Assign new biometrics to Biometrics struct
-/// [ ] In valueRow, show Bound Text if fixed bound (use what we have in plan)
-///     [ ] If based on energy, show the % of energy or x amount per y energy unit amount
-///     [ ] If biometrics required, say "requires biometrics"
-/// [ ]  If there are any requirements, check biometrics for its availability, otherwise showing a button which presents a sheet with the required biometrics inserted in it
+/// [ ] Start using RDIs from backend instead of micro.rdis
 
 struct RDIPicker: View {
     
     let micro: Micro
     @State var model = Model()
     
-    @Environment(BiometricsStore.self) var biometricsStore: BiometricsStore
+    @Environment(HealthModel.self) var healthModel: HealthModel
     
     @Observable class Model {
         var presentedURLString: String? = nil
@@ -26,7 +21,7 @@ struct RDIPicker: View {
             ForEach(micro.rdis, id: \.self) {
                 RDISection(rdi: $0)
                     .environment(model)
-                    .environment(biometricsStore)
+                    .environment(healthModel)
             }
         }
         .navigationTitle(micro.name)
@@ -57,19 +52,19 @@ struct RDIPicker: View {
 struct RDISection: View {
     
     @Environment(RDIPicker.Model.self) var model: RDIPicker.Model
-    @Environment(BiometricsStore.self) var biometricsStore: BiometricsStore
+    @Environment(HealthModel.self) var healthModel: HealthModel
 
     let rdi: RDI
     
     @State var isSmoker: PickableBool = .notSpecified
     @State var isPregnant: PickableBool = .notSpecified
     @State var isLactating: PickableBool = .notSpecified
-    @State var sex: BiometricSex = .notSpecified
+    @State var sex: Sex = .notSpecified
 
     var body: some View {
         Section(footer: selectButton) {
             sourceRow
-            biometricsRow
+            healthRow
             valueRow
         }
         .environment(\.openURL, OpenURLAction(handler: handleURL))
@@ -110,7 +105,7 @@ struct RDISection: View {
             Spacer()
             VStack(alignment: .trailing) {
 
-                //TODO: Get params from biometrics
+                //TODO: Get params from health
                 if let bound = rdi.displayBound(params: RDIParams()) {
                     bound.text(
 //                        formatter: <#T##(Double) -> (String)#>, 
@@ -118,7 +113,7 @@ struct RDISection: View {
                         unitString: rdi.unit.abbreviation
                     )
                 } else {
-                    Text("Requires biometrics")
+                    Text("Health data required")
                         .foregroundStyle(.tertiary)
                 }
                 
@@ -213,11 +208,11 @@ struct RDISection: View {
     }
     
     @ViewBuilder
-    var biometricsRow: some View {
-        if rdi.requiresBiometrics {
+    var healthRow: some View {
+        if rdi.requiresHealth {
             HStack {
                 NavigationLink {
-                    BiometricsForm(biometricsStore, [.age, .sex])
+                    HealthForm(healthModel, [.age, .sex])
                 } label: {
                     HStack {
                         Text("Health Data")
@@ -288,26 +283,20 @@ public extension RDI {
         return self.bound(params: params)
     }
     
-    var requiresBiometrics: Bool {
+    var requiresHealth: Bool {
         values.count > 1
     }
 }
 
-let dummyBiometricsStore = BiometricsStore(currentBiometricsHandler: {
-        Biometrics()
-}, saveHandler: { biometrics, isCurrent in
-    
-})
-
 #Preview {
     NavigationStack {
         RDIPicker(micro: .transFat, model: .init())
-            .environment(dummyBiometricsStore)
+            .environment(MockHealthModel)
     }
 }
 #Preview {
     NavigationStack {
         RDIPicker(micro: .dietaryFiber, model: .init())
-            .environment(dummyBiometricsStore)
+            .environment(MockHealthModel)
     }
 }
