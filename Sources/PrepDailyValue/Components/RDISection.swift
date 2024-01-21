@@ -9,7 +9,7 @@ struct RDIPicker: View {
     let micro: Micro
     @State var model = Model()
     
-    @Environment(HealthModel.self) var healthModel: HealthModel
+    @Environment(HealthProvider.self) var healthProvider: HealthProvider
     
     @Observable class Model {
         var presentedURLString: String? = nil
@@ -21,7 +21,7 @@ struct RDIPicker: View {
             ForEach(micro.rdis, id: \.self) {
                 RDISection(rdi: $0)
                     .environment(model)
-                    .environment(healthModel)
+                    .environment(healthProvider)
             }
         }
         .navigationTitle(micro.name)
@@ -52,14 +52,14 @@ struct RDIPicker: View {
 struct RDISection: View {
     
     @Environment(RDIPicker.Model.self) var model: RDIPicker.Model
-    @Environment(HealthModel.self) var healthModel: HealthModel
+    @Environment(HealthProvider.self) var healthProvider: HealthProvider
 
     let rdi: RDI
     
     @State var isSmoker: PickableBool = .notSpecified
     @State var isPregnant: PickableBool = .notSpecified
     @State var isLactating: PickableBool = .notSpecified
-    @State var sex: Sex = .notSpecified
+    @State var sex: BiologicalSex = .notSet
 
     var body: some View {
         Section(footer: selectButton) {
@@ -212,7 +212,8 @@ struct RDISection: View {
         if rdi.requiresHealth {
             HStack {
                 NavigationLink {
-                    HealthForm(healthModel, [.age, .sex])
+                    Text("[Health Form goes here]")
+//                    HealthForm(healthProvider, [.age, .sex])
                 } label: {
                     HStack {
                         Text("Health Data")
@@ -288,15 +289,15 @@ public extension RDI {
     }
 }
 
-#Preview {
-    NavigationStack {
-        RDIPicker(micro: .transFat, model: .init())
-            .environment(MockHealthModel)
-    }
-}
-#Preview {
-    NavigationStack {
-        RDIPicker(micro: .dietaryFiber, model: .init())
-            .environment(MockHealthModel)
-    }
-}
+//#Preview {
+//    NavigationStack {
+//        RDIPicker(micro: .transFat, model: .init())
+//            .environment(MockHealthModel)
+//    }
+//}
+//#Preview {
+//    NavigationStack {
+//        RDIPicker(micro: .dietaryFiber, model: .init())
+//            .environment(MockHealthModel)
+//    }
+//}

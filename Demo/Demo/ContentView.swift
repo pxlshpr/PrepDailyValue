@@ -3,18 +3,19 @@ import PrepDailyValue
 import PrepShared
 import PrepSettings
 
+
 struct ContentView: View {
     
-    @State var settingsStore = SettingsStore.shared
-    @State var healthModel: HealthModel = MockHealthModel
+    @State var settingsProvider = SettingsProvider.shared
+//    @State var healthProvider: HealthProvider = MockHealthModel
     
     init() {
-        SettingsStore.configureAsMock()
+//        SettingsProvider.configureAsMock()
     }
     
     var body: some View {
         MicrosSettings()
-            .environment(settingsStore)
+            .environment(settingsProvider)
     }
 }
 

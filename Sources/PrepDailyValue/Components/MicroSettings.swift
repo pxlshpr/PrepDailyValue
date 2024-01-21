@@ -18,22 +18,22 @@ extension Settings {
 struct MicroSettings: View {
     
     let micro: Micro
-    @Bindable var settingsStore: SettingsStore
+    @Bindable var settingsProvider: SettingsProvider
 
 //    @State var isDisplayed: Bool = true
     @State var useDailyValue: Bool = true
     @State var type: DailyValueType = .default
 
     
-    init(_ micro: Micro, _ settingsStore: SettingsStore) {
+    init(_ micro: Micro, _ settingsProvider: SettingsProvider) {
         self.micro = micro
-        self.settingsStore = settingsStore
+        self.settingsProvider = settingsProvider
     }
     
     var isDisplayed: Binding<Bool> {
         Binding<Bool>(
-            get: { settingsStore.settings.displayedMicros.contains(micro) },
-            set: { settingsStore.settings.setIsDisplayed(for: micro, to: $0) }
+            get: { settingsProvider.settings.displayedMicros.contains(micro) },
+            set: { settingsProvider.settings.setIsDisplayed(for: micro, to: $0) }
         )
     }
     
@@ -120,6 +120,6 @@ struct MicroSettings: View {
 
 #Preview {
     NavigationStack {
-        MicroSettings(.dietaryFiber, SettingsStore.shared)
+        MicroSettings(.dietaryFiber, SettingsProvider.shared)
     }
 }

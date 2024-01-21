@@ -4,7 +4,7 @@ import PrepSettings
 
 public struct MicrosSettings: View {
     
-    @Environment(SettingsStore.self) var settingsStore: SettingsStore
+    @Environment(SettingsProvider.self) var settingsProvider: SettingsProvider
 
     public init() {
         
@@ -17,7 +17,7 @@ public struct MicrosSettings: View {
                     Section(group.name) {
                         ForEach(group.micros, id: \.self) { micro in
                             NavigationLink {
-                                MicroSettings(micro, settingsStore)
+                                MicroSettings(micro, settingsProvider)
                             } label: {
                                 Text(micro.name)
                             }
