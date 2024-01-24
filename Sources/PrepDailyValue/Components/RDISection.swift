@@ -281,7 +281,7 @@ public extension RDI {
             return values.first?.bound
         }
         
-        return self.bound(params: params)
+        return self.calculateBound(params: params)
     }
     
     var requiresHealth: Bool {
@@ -289,15 +289,17 @@ public extension RDI {
     }
 }
 
-//#Preview {
-//    NavigationStack {
-//        RDIPicker(micro: .transFat, model: .init())
-//            .environment(MockHealthModel)
-//    }
-//}
-//#Preview {
-//    NavigationStack {
-//        RDIPicker(micro: .dietaryFiber, model: .init())
-//            .environment(MockHealthModel)
-//    }
-//}
+#Preview("Trans Fat") {
+    NavigationStack {
+        RDIPicker(micro: .transFat, model: .init())
+            .environment(MockHealthProvider)
+    }
+}
+#Preview("Dietary Fibre") {
+    NavigationStack {
+        RDIPicker(micro: .dietaryFiber, model: .init())
+            .environment(MockHealthProvider)
+    }
+}
+
+let MockHealthProvider = HealthProvider(healthDetails: .init(date: Date.now), settingsProvider: SettingsProvider.shared)

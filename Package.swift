@@ -15,7 +15,7 @@ let package = Package(
             targets: ["PrepDailyValue"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/pxlshpr/PrepShared", from: "0.0.215"),
+        .package(url: "https://github.com/pxlshpr/PrepShared", from: "0.0.253"),
         .package(url: "https://github.com/pxlshpr/PrepSettings", from: "0.0.160"),
     ],
     targets: [
