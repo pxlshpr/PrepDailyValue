@@ -70,19 +70,15 @@ struct RDISection: View {
         .environment(\.openURL, OpenURLAction(handler: handleURL))
     }
         
-    @ViewBuilder
     var sourceRow: some View {
-        if let source = rdi.source, let string = rdi.url {
-            HStack(alignment: .firstTextBaseline) {
-                Text("Source")
-                Spacer()
-                Text(source.name)
-                    .multilineTextAlignment(.trailing)
-                    .foregroundStyle(.secondary)
-                Link(destination: URL(string: string)!) {
-//                        Text(source.name)
-                    Image(systemName: "arrow.up.right")
-                }
+        HStack(alignment: .firstTextBaseline) {
+            Text("Source")
+            Spacer()
+            Text(rdi.source.name)
+                .multilineTextAlignment(.trailing)
+                .foregroundStyle(.secondary)
+            Link(destination: URL(string: rdi.url)!) {
+                Image(systemName: "arrow.up.right")
             }
         }
     }
@@ -229,7 +225,7 @@ struct RDISection: View {
     
     var selectButton: some View {
         var selected: Bool {
-            rdi.source?.name == "Mayo Clinic"
+            rdi.source.name == "Mayo Clinic"
         }
         
         var selectedView: some View {
