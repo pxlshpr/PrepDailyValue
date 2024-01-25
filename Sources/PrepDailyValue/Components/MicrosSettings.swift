@@ -4,8 +4,7 @@ import PrepSettings
 
 public struct MicrosSettings: View {
     
-    @Environment(SettingsProvider.self) var settingsProvider: SettingsProvider
-    @Environment(HealthProvider.self) var healthProvider: HealthProvider
+    @Environment(Provider.self) var provider: Provider
 
     public init() {
         
@@ -84,7 +83,7 @@ public struct MicrosSettings: View {
             }
             
             return NavigationLink {
-                MicroSettings(micro, settingsProvider)
+                MicroSettings(micro, provider)
             } label: {
                 label
             }
@@ -99,6 +98,5 @@ public struct MicrosSettings: View {
 
 #Preview {
     MicrosSettings()
-        .environment(SettingsProvider.shared)
-        .environment(MockHealthProvider)
+        .environment(Provider.shared)
 }

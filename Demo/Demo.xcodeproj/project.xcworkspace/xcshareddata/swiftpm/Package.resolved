@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pxlshpr/PrepSettings",
       "state" : {
-        "revision" : "4182d4725c34575b9d42e273e0d524fb046842d1",
-        "version" : "0.0.184"
+        "revision" : "d3c1fc9125f5b538c3af330fe83cbf4af06d0483",
+        "version" : "0.0.186"
       }
     },
     {
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pxlshpr/PrepShared",
       "state" : {
-        "revision" : "166474fdc7a52fffdc46dd4c2ee06e174bd8d19c",
-        "version" : "0.0.269"
+        "revision" : "96891e09f6aa3f099a59f8960dab629e4ba6ca0d",
+        "version" : "0.0.270"
       }
     },
     {

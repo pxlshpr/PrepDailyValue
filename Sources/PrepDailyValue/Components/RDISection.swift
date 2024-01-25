@@ -9,7 +9,7 @@ struct RDIPicker: View {
     let micro: Micro
     @State var model = Model()
     
-    @Environment(HealthProvider.self) var healthProvider: HealthProvider
+    @Environment(Provider.self) var provider: Provider
     
     @Observable class Model {
         var presentedURLString: String? = nil
@@ -21,7 +21,7 @@ struct RDIPicker: View {
             ForEach(micro.rdis, id: \.self) {
                 RDISection(rdi: $0)
                     .environment(model)
-                    .environment(healthProvider)
+                    .environment(provider)
             }
         }
         .navigationTitle(micro.name)
@@ -52,7 +52,7 @@ struct RDIPicker: View {
 struct RDISection: View {
     
     @Environment(RDIPicker.Model.self) var model: RDIPicker.Model
-    @Environment(HealthProvider.self) var healthProvider: HealthProvider
+    @Environment(Provider.self) var provider: Provider
 
     let rdi: RDI
     
@@ -209,7 +209,6 @@ struct RDISection: View {
             HStack {
                 NavigationLink {
                     Text("[Health Form goes here]")
-//                    HealthForm(healthProvider, [.age, .sex])
                 } label: {
                     HStack {
                         Text("Health Data")
@@ -288,14 +287,12 @@ public extension RDI {
 #Preview("Trans Fat") {
     NavigationStack {
         RDIPicker(micro: .transFat, model: .init())
-            .environment(MockHealthProvider)
+            .environment(Provider.shared)
     }
 }
 #Preview("Dietary Fibre") {
     NavigationStack {
         RDIPicker(micro: .dietaryFiber, model: .init())
-            .environment(MockHealthProvider)
+            .environment(Provider.shared)
     }
 }
-
-let MockHealthProvider = HealthProvider(healthDetails: .init(date: Date.now), settingsProvider: SettingsProvider.shared)

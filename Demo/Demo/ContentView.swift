@@ -6,16 +6,13 @@ import PrepSettings
 
 struct ContentView: View {
     
-    @State var settingsProvider = SettingsProvider.shared
-//    @State var healthProvider: HealthProvider = MockHealthModel
+    @State var provider = Provider.shared
     
-    init() {
-//        SettingsProvider.configureAsMock()
-    }
+    init() { }
     
     var body: some View {
         MicrosSettings()
-            .environment(settingsProvider)
+            .environment(provider)
     }
 }
 
