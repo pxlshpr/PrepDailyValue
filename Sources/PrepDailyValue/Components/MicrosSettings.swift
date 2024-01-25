@@ -52,16 +52,27 @@ public struct MicrosSettings: View {
                 var bottomRow: some View {
                     HStack {
                         Spacer()
-                        Text("Not Set")
-                            .foregroundStyle(Color(.tertiaryLabel))
-//                        HStack(alignment: .firstTextBaseline, spacing: 2) {
-//                            Text("15 - 2000")
-//                                .font(.system(.title2, design: .rounded, weight: .medium))
-//                                .foregroundStyle(Color(.label))
-//                            Text("mg/kcal")
-//                                .font(Font.system(.callout, design: .rounded, weight: .medium))
-//                                .foregroundStyle(Color(.secondaryLabel))
-//                        }
+                        ZStack {
+                            
+                            /// Dummy text placed to ensure height is consistent among cells despite the smaller font for empty value
+                            Text(" ")
+                                .font(.system(.title2, design: .rounded, weight: .medium))
+                                .opacity(0)
+
+                            if micro == .monounsaturatedFat {
+                                HStack(alignment: .firstTextBaseline, spacing: 2) {
+                                    Text("15 - 2000")
+                                        .font(.system(.title2, design: .rounded, weight: .medium))
+                                        .foregroundStyle(Color(.label))
+                                    Text("mg/kcal")
+                                        .font(Font.system(.callout, design: .rounded, weight: .medium))
+                                        .foregroundStyle(Color(.secondaryLabel))
+                                }
+                            } else {
+                                Text("Not Set")
+                                    .foregroundStyle(Color(.tertiaryLabel))
+                            }
+                        }
                     }
                 }
                 
